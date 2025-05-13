@@ -132,6 +132,42 @@ public class Usuario {
 	    }
 	    return result;
 	}
+	public String ingresarAdministrador() {
+	    String result = "";
+
+	    Conexion con = new Conexion();
+	    PreparedStatement pr = null;
+	    // Consulta de inserción sin el campo id_us (AUTO_INCREMENT)
+	    String sql = "INSERT INTO tb_usuario (id_per, id_est, nombre_us, cedula_us, correo_us, clave_us) "
+	                 + "VALUES (?, ?, ?, ?, ?, ?)";
+
+	    try {
+	        pr = con.getConexion().prepareStatement(sql);
+	        pr.setInt(1, 1); // Perfil
+	        pr.setInt(2, this.getEstado()); // Estado
+	        pr.setString(3, this.getNombre()); // Nombre
+	        pr.setString(4, this.getCedula()); // Cédula
+	        pr.setString(5, this.getCorreo()); // Correo
+	        pr.setString(6, this.getClave());
+
+	        if (pr.executeUpdate() == 1) {
+	            result = "Inserción correcta";
+	        } else {
+	            result = "Error en la inserción";
+	        }
+	    } catch (Exception ex) {
+	        result = ex.getMessage();
+	        System.out.print(result);
+	    } finally {
+	        try {
+	            pr.close();
+	            con.getConexion().close();
+	        } catch (Exception ex) {
+	            System.out.print(ex.getMessage());
+	        }
+	    }
+	    return result;
+	}
 	public String ingresarEmpleado() {
 	    String result = "";
 

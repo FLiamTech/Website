@@ -26,6 +26,7 @@
         <nav>
             <a class="active" href="consulta.jsp">Ver Productos</a>
             <a href="registro.jsp">Login</a>
+            <a href="categoria.jsp">Categoria</a>
         </nav>
         </nav>
 

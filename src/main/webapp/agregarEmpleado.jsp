@@ -20,10 +20,14 @@
     String mensaje = "";
     
     if (perfil == 2) { // Cliente
-        mensaje = usuario.ingresarCliente(); // Llama al método para ingresar cliente
+        mensaje = usuario.ingresarAdministrador(); // Llama al método para ingresar cliente
     } else if (perfil == 3) { // Vendedor (Empleado)
         mensaje = usuario.ingresarEmpleado(); // Llama al método para ingresar empleado
     }
 
-    out.println("<p>" + mensaje + "</p>");
 %>
+<% if (!mensaje.equals("")) { %>
+				    	<div class="mensaje">
+				        <p><%= mensaje %></p>
+				    	</div>
+					<% } %>

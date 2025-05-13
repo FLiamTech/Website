@@ -54,7 +54,7 @@
                     <div class="form-group">
                     	<label for="cmbPerfil">Tipo de perfil</label>
                     	<select name="cmbPerfil" id="cmbPerfil">
-                    		<option value="2">Cliente</option>
+                    		<option value="1">Administrador</option>
                     		<option value="3">Vendedor</option>
                     	</select>
                     </div>

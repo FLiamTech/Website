@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="com.productos.login.*"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,7 +10,7 @@
     <main class="registro-contenedor">
         <section class="form-box">
             <h2>Registro Nuevo Cliente</h2>
-            <form action="respuesta.jsp" method="post" enctype="multipart/form-data">
+            <form action="respuesta.jsp" method="post">
                 <div class="form-group">
                     <label for="txtNombre">Nombre:</label>
                     <input type="text" name="txtNombre" id="txtNombre" required>
@@ -70,6 +70,17 @@
                     <button type="reset">Limpiar</button>
                 </div>
             </form>
+            <!-- Mostrar el mensaje de error si existe -->
+                <% 
+                    String error = (String) request.getAttribute("error"); 
+                    if (error != null) { 
+                %>
+                    <div class="mensaje-error">
+                        <p><%= error %></p>
+                    </div>
+                <% 
+                    }
+                %>
         </section>
     </main>
 </body>

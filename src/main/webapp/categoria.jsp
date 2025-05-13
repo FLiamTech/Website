@@ -27,22 +27,6 @@
         }
     </style>
 </head>
-<% 
-    String usuario; 
-    HttpSession sesion = request.getSession(); 
-    if (sesion.getAttribute("usuario") == null)   //Se verifica si existe la variable      
-    { 
-     %> 
-     <jsp:forward page="iniciarSesion.jsp"> 
-     <jsp:param name="error" value="Debe registrarse en el sistema."/> 
-     </jsp:forward> 
-     <% 
-    } 
-    else 
-    { 
-    usuario=(String)sesion.getAttribute("usuario"); //Se devuelve los valores de atributos 
-    int perfil=(Integer)sesion.getAttribute("perfil"); 
-    %> 
 <body>
     <main>
         <header>
@@ -52,11 +36,9 @@
         </header>
 
         <nav>
-            <% 
- 				pagina pag=new pagina(); 
- 				String menu=pag.mostrarMenu(perfil); 
- 				out.print(menu); 
- 				%>
+            <a class="active" href="consulta.jsp">Ver Productos</a>
+            <a href="registro.jsp">Login</a>
+            <a href="categoria.jsp">Categoria</a>
         </nav>
 
 			<div class="contenedor-categorias">
@@ -108,4 +90,3 @@
     </main>
 </body>
 </html>
-    <%}%>
