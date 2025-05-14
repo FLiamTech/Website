@@ -362,12 +362,10 @@ select[name="cmbCategoria"] {
     color: #333;
 }
 
-/* Alternar colores para filas */
 .resultados-productos tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-/* Espaciado y sombreado visual si se usa formato de tarjetas */
 .producto-card {
     background-color: #f4f4f4;
     padding: 15px;
@@ -375,4 +373,31 @@ select[name="cmbCategoria"] {
     border-radius: 10px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     color: #222;
+}
+
+/*Registro cliente*/
+
+h2, p.registro {
+	text-align: center;
+	color: #ff00ff;
+	border-radius: 12px;
+	padding: 1rem auto;
+}
+.registro-cliente {
+	text-align: center;
+	margin-bottom: 2rem;
+	padding: 1rem;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.05);
+	transition: all 0.3s ease-in-out;
+	margin: 2rem auto;
+	max-width: 500px;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.registro-cliente:hover {
+  	transform: scale(1.02);
+	box-shadow: 0 0 20px #00ffcc;
+}
+.registro {
+	text-align: center;
 }

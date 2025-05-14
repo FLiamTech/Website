@@ -46,7 +46,16 @@
                     <div class="form-buttons">
                     	<button type="submit" class="btn">Iniciar Sesión</button>
                     </div>
-                    
+                    <%
+					    String error = (String) request.getAttribute("error");
+					    if (error != null) {
+					%>
+					    <div class="error-message" style="color: red; font-weight: bold;">
+					        <%= error %>
+					    </div>
+					<%
+					    }
+					%>
                 </form>
                 <p>¿No tienes una cuenta? <a href="login.jsp">Registrarse</a></p>
             </section>

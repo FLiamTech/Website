@@ -70,7 +70,7 @@
                     <button type="reset">Limpiar</button>
                 </div>
             </form>
-            <!-- Mostrar el mensaje de error si existe -->
+
                 <% 
                     String error = (String) request.getAttribute("error"); 
                     if (error != null) { 

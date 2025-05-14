@@ -16,15 +16,7 @@
     String residencia = request.getParameter("rdResidencia");
     String correo = request.getParameter("txtEmail");
     String clave = request.getParameter("txtClave");
-
-    // Depuración de los valores obtenidos
-    System.out.println("Nombre: " + nombre);
-    System.out.println("Cédula: " + cedula);
-    System.out.println("Estado Civil: " + estadoCivil);
-    System.out.println("Residencia: " + residencia);
-    System.out.println("Correo: " + correo);
-    System.out.println("Clave: " + clave);
-
+    
     // Crear un objeto Usuario
     Usuario nuevoUsuario = new Usuario();
     nuevoUsuario.setNombre(nombre);
@@ -44,9 +36,24 @@
     String resultado = nuevoUsuario.ingresarCliente();
 %>
 
-<h2>Resultado del Registro</h2>
-<p><strong><%= resultado %></strong></p>
+<h2 class="registro">Resultado del Registro</h2>
+<p class="registro"><strong><%= resultado %></strong></p>
 
-<a href="index.jsp">Volver al inicio</a>
+<div class="registro-cliente">
+            <p><strong>Nombre:</strong> <%= request.getParameter("txtNombre") %></p>
+            <p><strong>Cédula:</strong> <%= request.getParameter("txtCedula") %></p>
+            <p><strong>Correo Registrado:</strong> <%= request.getParameter("txtEmail") %></p>
+            <p><strong>Estado Civil:</strong> <%= request.getParameter("cmbECivil") %></p>
+            <p><strong>Lugar de Residencia:</strong> <%= request.getParameter("rdResidencia") %></p>
+            <p><strong>Mes y Año de Nacimiento:</strong> <%= request.getParameter("fecha") %></p>
+            <p><strong>Color Favorito:</strong> 
+                <span style="color:<%= request.getParameter("colorFavorito") %>;">Este es tu color favorito</span>
+            </p>
+            <p><strong>Archivo Subido:</strong> <%= request.getParameter("fileFoto") %></p>
+        </div>
+<div class="registro">
+	<a href="index.jsp">Volver al inicio</a>
+</div>
+
 </body>
 </html>
