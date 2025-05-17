@@ -401,3 +401,78 @@ h2, p.registro {
 .registro {
 	text-align: center;
 }
+
+/* Tabla de productos */
+.select-categoria {
+  width: 100%;	
+  border-collapse: collapse;
+  margin-top: 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+  animation: fadeIn 1s ease-in-out;
+}
+
+.select-categoria thead {
+  background-color: #00ffff33;
+}
+
+.select-categoria th,
+.select-categoria td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+}
+
+.select-categoria th {
+  background-color: #00ffff44;
+  color: #000;
+  text-shadow: 0 0 2px cyan;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.select-categoria tr:hover {
+  background-color: #00ffff22;
+  transform: scale(1.01);
+  transition: all 0.3s ease;
+}
+
+.select-categoria a {
+  color: #ff00ff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.select-categoria a:hover {
+  color: #fff;
+  text-shadow: 0 0 5px #ff00ff;
+}
+
+.contenedor-categorias {
+  flex: 1 1 100%;
+  width: fit-content;
+  max-width: none;
+  overflow-x: auto;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  box-shadow: 0 0 20px cyan;
+  padding: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-box-products {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #00ffff55;
+  width: 100%;
+  max-width: 600px;
+  animation: fadeIn 1s ease-in-out;
+  margin-left: auto;
+  margin-right: auto;
+}

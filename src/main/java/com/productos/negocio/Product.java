@@ -1,6 +1,7 @@
 package com.productos.negocio;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import com.productos.datos.Conexion;
@@ -84,4 +85,84 @@ public class Product {
         resultado += "</table>";
         return resultado;
     }
+    
+    public String reporteProducto() {
+        String sql = "SELECT pr.id_pro, pr.nombre_pr, cat.descripcion_cat, pr.cantidad_pr, pr.precio_pr "
+                   + "FROM db_producto pr, tb_categoria cat "
+                   + "WHERE pr.id_cat = cat.id_categoria;";
+        
+        Conexion con = new Conexion();
+        String tabla = "<table class=\"select-categoria\">\n"
+                     + "   <thead>\n"
+                     + "      <tr>\n"
+                     + "         <th scope=\"col\">ID</th>\n"
+                     + "         <th scope=\"col\">Producto</th>\n"
+                     + "         <th scope=\"col\">Categoria</th>\n"
+                     + "         <th scope=\"col\">Cantidad</th>\n"
+                     + "         <th scope=\"col\">Precio</th>\n"
+                     + "         <th scope=\"col\">Modificar</th>\n"
+                     + "         <th scope=\"col\">Eliminar</th>\n"
+                     + "      </tr>\n"
+                     + "   </thead>\n"
+                     + "   <tbody>";
+
+        ResultSet rs = con.Consulta(sql);
+
+        try {
+            while (rs.next()) {
+                tabla += "<tr>"
+                       + "   <th scope=\"row\">" + rs.getInt("id_pro") + "</th>"
+                       + "   <td>" + rs.getString("nombre_pr") + "</td>\n"
+                       + "   <td>" + rs.getString("descripcion_cat") + "</td>\n"
+                       + "   <td>" + rs.getInt("cantidad_pr") + "</td>\n"
+                       + "   <td>" + rs.getDouble("precio_pr") + "</td>\n"
+                       + "   <td><a href=\"actualizar.jsp?id=" + rs.getInt(1) + "\">Actualizar</a></td>\n"
+                       + "   <td><a href=\"eliminar.jsp?id=" + rs.getInt(1) + "\" onclick=\"return confirm('¿Seguro que deseas eliminar este producto?')\">Eliminar</a></td>\n"
+                       + "</tr>";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "<p>Error SQL: " + e.getMessage() + "</p>";
+        }
+
+        tabla += "</tbody>\n</table>";
+        return tabla;
+    }
+    public String agregarProducto ()
+    {
+    	String result = "";
+    	Conexion con = new Conexion ();
+    	PreparedStatement pr = null;
+    	String sql = "INSERT INTO db_producto (id_cat, nombre_pr, cantidad_pr, precio_pr)\n"
+    			+ "VALUES (?, ?, ?, ?);";
+    	try
+    	{
+    		pr = con.getConexion().prepareStatement(sql);
+    		pr.setInt(1, this.getId_categoria());
+    		pr.setString(2, this.getNombre());
+    		pr.setInt(3, this.getCantidad());
+    		pr.setDouble(4, this.getPrecio());
+    		
+    		if (pr.executeUpdate() == 1)
+    		{
+    			result = "Inserción Correcta";
+    		}
+    		else
+    		{
+    			result = "Error en la inserción";
+    		}
+    	} catch (Exception ex) {
+	        result = ex.getMessage();
+	        System.out.print(result);
+	    } finally {
+	        try {
+	            pr.close();
+	            con.getConexion().close();
+	        } catch (Exception ex) {
+	            System.out.print(ex.getMessage());
+	        }
+	    }
+	    return result;
+    }
+    
 }
