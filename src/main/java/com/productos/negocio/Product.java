@@ -128,6 +128,27 @@ public class Product {
         tabla += "</tbody>\n</table>";
         return tabla;
     }
+    public boolean obtenerProductoPorId(String id) {
+        Conexion con = new Conexion();
+        String sql = "SELECT * FROM db_producto WHERE id_pro = ?";
+        try {
+            PreparedStatement ps = con.getConexion().prepareStatement(sql);
+            ps.setInt(1, Integer.parseInt(id));
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                this.setId(rs.getInt("id_pro"));
+                this.setNombre(rs.getString("nombre_pr"));
+                this.setCantidad(rs.getInt("cantidad_pr"));
+                this.setPrecio(rs.getDouble("precio_pr"));
+                this.setId_categoria(rs.getInt("id_cat"));
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public String agregarProducto ()
     {
     	String result = "";
@@ -164,5 +185,47 @@ public class Product {
 	    }
 	    return result;
     }
-    
+    public String actualizarStock (String id)
+    {
+    	String result="";
+    	Conexion con= new Conexion();
+    	PreparedStatement pr = null;
+    	String sql = "UPDATE db_producto SET cantidad_pr=cantidad_pr + ?\n"
+    			+ "	WHERE id_pro="+id +";";
+    	
+    	try
+    	{
+    		pr = con.getConexion().prepareStatement(sql);
+    		pr.setInt(1, this.getCantidad());
+    		if (pr.executeUpdate() == 1)
+    		{
+    			result = "Inserción Correcta";
+    		}
+    		else
+    		{
+    			result = "Error en la inserción";
+    		}
+    	} catch (Exception ex) {
+	        result = ex.getMessage();
+	        System.out.print(result);
+	    } finally {
+	        try {
+	            pr.close();
+	            con.getConexion().close();
+	        } catch (Exception ex) {
+	            System.out.print(ex.getMessage());
+	        }
+	    }
+    	
+    	return result;
+    }
+    public String eliminarProducto (String id)
+    {
+    	String result="";
+    	Conexion con = new Conexion ();
+    	String sql = "DELETE FROM db_producto \n"
+    			+ "WHERE id_pro="+id+";";
+    	result=con.Ejecutar(sql);
+    	return result;
+    }
 }

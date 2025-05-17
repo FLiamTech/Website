@@ -33,6 +33,7 @@
     		<%
     			pagina pag = new pagina ();
     			String menu = pag.mostrarMenu(perfil);
+    			out.print(menu);
     		%>
     	</nav>
     	<div class="agrupar-productos">
@@ -56,7 +57,7 @@
     				</div>
     				<div class="form-group">
     					<label for="precio">Precio</label>
-    					<input type="number" id="precio" name="precio" required min"0" step="0.1">
+    					<input type="number" id="precio" name="precio" required min="0" step="0.1">
     				</div>
     				<div class="form-group">
                     	<label for="fileFoto">Foto:</label>
@@ -76,5 +77,21 @@
     			out.print(pr.reporteProducto());
     		%>
     	</div>
+    	<footer>
+            <ul>
+                <li><a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                    <img src="iconos/facebook_icono.png" width="40" height="40" alt="Facebook"/>
+                </a></li>
+                <li><a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                    <img src="iconos/instagram_icono.png" width="40" height="40" alt="Instagram"/>
+                </a></li>
+                <li><a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">
+                    <img src="iconos/tiktok_icono.png" width="40" height="40" alt="TikTok"/>
+                </a></li>
+                <li><a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
+                    <img src="iconos/x_icono.png" width="40" height="40" alt="X (Twitter)"/>
+                </a></li>
+            </ul>
+        </footer>
     </main>
 <%}%>

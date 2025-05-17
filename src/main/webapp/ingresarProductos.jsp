@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" import="com.productos.negocio.*"
+<%@ page language="java" contentType="text/html; charset=UTF-8" import="com.productos.negocio.*" import= "com.productos.login.*"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Ingreso de productos</title>
 <link href="css/estilos.css" rel="stylesheet" type="text/css">
-</head>
+</head>}
 <body>
 <%	
 	// Extremos los datos de cada producto agregado
