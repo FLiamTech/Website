@@ -1,5 +1,6 @@
 package com.productos.negocio;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -23,6 +24,26 @@ public class Categoria
 	        System.out.print(e.getMessage());
 	    }
 	    return combo;
+	}
+
+	public String nombreCat(int id_cat) {
+	    String result = "";
+	    String sql = "SELECT descripcion_cat FROM tb_categoria WHERE id_categoria=?";
+	    Conexion con = new Conexion();
+	    try {
+	        PreparedStatement ps = con.getConexion().prepareStatement(sql);
+	        ps.setInt(1, id_cat);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            result = rs.getString("descripcion_cat");
+	        } else {
+	            result = "Categoría no encontrada";
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        result = "Error en la búsqueda";
+	    }
+	    return result;
 	}
 
 }

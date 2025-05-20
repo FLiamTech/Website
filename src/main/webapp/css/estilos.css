@@ -339,7 +339,6 @@ select[name="cmbCategoria"] {
     font-size: 16px;
 }
 
-/* Si los productos se listan en <table>, mejora la tabla */
 .resultados-productos table {
     width: 100%;
     border-collapse: collapse;
@@ -475,4 +474,21 @@ h2, p.registro {
   animation: fadeIn 1s ease-in-out;
   margin-left: auto;
   margin-right: auto;
+}
+.datos-producto {
+	text-align: center;
+	padding: 1rem;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.05);
+	transition: all 0.3s ease-in-out;
+	margin: 2rem auto;
+	max-width: 500px;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.datos-producto:hover {
+  	transform: scale(1.02);
+	box-shadow: 0 0 20px #00ffcc;
+}
+.mensajes {
+	font-size: 2rem;
 }

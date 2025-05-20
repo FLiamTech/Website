@@ -69,6 +69,8 @@
                                     mensaje = user.cambioClave(new_password, usuario);
                                     // Opcional: actualizar la contraseña en sesión
                                     session.setAttribute("contrasena", new_password);
+                                    response.sendRedirect("respuesta.jsp");
+                                    return;
                                 } else {
                                     mensaje = "Las claves nuevas no coinciden.";
                                 }

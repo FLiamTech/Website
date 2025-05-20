@@ -151,6 +151,15 @@ public class Product {
 
     public String agregarProducto ()
     {
+    	String sqlSetVal = "SELECT setval(pg_get_serial_sequence('db_producto', 'id_pro'), (SELECT MAX(id_pro) FROM db_producto))";
+
+    	try (Connection con = new Conexion().getConexion();
+    	     PreparedStatement ps = con.prepareStatement(sqlSetVal)) {
+    	    ps.execute();
+    	} catch (SQLException e) {
+    	    e.printStackTrace();
+    	}
+
     	String result = "";
     	Conexion con = new Conexion ();
     	PreparedStatement pr = null;
@@ -185,40 +194,49 @@ public class Product {
 	    }
 	    return result;
     }
-    public String actualizarStock (String id)
-    {
-    	String result="";
-    	Conexion con= new Conexion();
-    	PreparedStatement pr = null;
-    	String sql = "UPDATE db_producto SET cantidad_pr=cantidad_pr + ?\n"
-    			+ "	WHERE id_pro="+id +";";
-    	
-    	try
-    	{
-    		pr = con.getConexion().prepareStatement(sql);
-    		pr.setInt(1, this.getCantidad());
-    		if (pr.executeUpdate() == 1)
-    		{
-    			result = "Inserción Correcta";
-    		}
-    		else
-    		{
-    			result = "Error en la inserción";
-    		}
-    	} catch (Exception ex) {
-	        result = ex.getMessage();
-	        System.out.print(result);
-	    } finally {
-	        try {
-	            pr.close();
-	            con.getConexion().close();
-	        } catch (Exception ex) {
-	            System.out.print(ex.getMessage());
-	        }
-	    }
-    	
-    	return result;
+    public String actualizarProducto(String id) {
+    	String sqlSetVal = "SELECT setval(pg_get_serial_sequence('db_producto', 'id_pro'), (SELECT MAX(id_pro) FROM db_producto))";
+
+    	try (Connection con = new Conexion().getConexion();
+    	     PreparedStatement ps = con.prepareStatement(sqlSetVal)) {
+    	    ps.execute();
+    	} catch (SQLException e) {
+    	    e.printStackTrace();
+    	}
+
+        String result = "";
+        Conexion con = new Conexion();
+        PreparedStatement pr = null;
+        String sql = "UPDATE db_producto SET nombre_pr = ?, cantidad_pr = ?, precio_pr = ?, id_cat = ? WHERE id_pro = ?";
+
+        try {
+            pr = con.getConexion().prepareStatement(sql);
+            pr.setString(1, this.getNombre());
+            pr.setInt(2, this.getCantidad());
+            pr.setDouble(3, this.getPrecio());
+            pr.setInt(4, this.getId_categoria());
+            pr.setInt(5, Integer.parseInt(id)); 
+
+            if (pr.executeUpdate() == 1) {
+                result = "Actualización Correcta";
+            } else {
+                result = "Error en la actualización";
+            }
+        } catch (Exception ex) {
+            result = "Error al actualizar: " + ex.getMessage();
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (pr != null) pr.close();
+                con.getConexion().close();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+
+        return result;
     }
+
     public String eliminarProducto (String id)
     {
     	String result="";
